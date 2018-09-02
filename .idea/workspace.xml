@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="082c92d0-e212-405d-8b15-12c797d5db2a" name="Default Changelist" comment="" />
+    <list default="true" id="082c92d0-e212-405d-8b15-12c797d5db2a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -50,7 +52,7 @@
           <entry key="css" value="1" />
           <entry key="ejs" value="4363" />
           <entry key="js" value="2210" />
-          <entry key="md" value="158" />
+          <entry key="md" value="163" />
           <entry key="www" value="44" />
         </counts>
       </usages-collector>
@@ -59,7 +61,7 @@
           <entry key="CSS" value="1" />
           <entry key="EJS" value="4363" />
           <entry key="JavaScript" value="2254" />
-          <entry key="Markdown" value="158" />
+          <entry key="Markdown" value="163" />
         </counts>
       </usages-collector>
     </session>
@@ -97,8 +99,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="24">
-                <caret line="1" column="2" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="2" selection-end-column="13" />
+              <first_editor relative-caret-position="48">
+                <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
               </first_editor>
               <second_editor />
             </state>
@@ -133,6 +135,9 @@
     <replaceStrings>
       <replace>bookinstance</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -243,6 +248,7 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -303,12 +309,12 @@
       <workItem from="1535695260725" duration="85000" />
       <workItem from="1535738503628" duration="906000" />
       <workItem from="1535754075204" duration="1101000" />
-      <workItem from="1535758313321" duration="36496000" />
+      <workItem from="1535758313321" duration="36756000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38588000" />
+    <option name="totallyTimeSpent" value="38848000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="1932" height="1050" extended-state="6" />
@@ -326,7 +332,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -622,8 +628,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="24">
-            <caret line="1" column="2" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="2" selection-end-column="13" />
+          <first_editor relative-caret-position="48">
+            <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
           </first_editor>
           <second_editor />
         </state>
