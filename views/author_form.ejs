@@ -1,0 +1,47 @@
+<% include partials/header.ejs %>
+
+<h1><%= title %></h1>
+<form method="POST" action="">
+    <div class="form-group">
+        <label for="first_name">First name: </label>
+        <input
+                id="first_name"
+                class="form-control"
+                type="text"
+                placeholder="Jordan"
+                name="first_name"
+                required="true"
+                value="<%= locals.author===undefined ? '' : author.first_name %>">
+        <label for="family_name">Family name: </label>
+        <input
+                id="family_name"
+                class="form-control"
+                type="text"
+                placeholder="Peterson"
+                name="family_name"
+                required="true"
+                value="<%= locals.author===undefined ? '' : author.family_name %>">
+    </div>
+    <div class="form-group">
+        <label for="date_of_birth">Date of Birth: </label>
+        <input
+                id="date_of_birth"
+                class="form-control"
+                type="date"
+                name="date_of_birth"
+                value="<%= locals.author===undefined ? '' : author.date_of_birth_formatted %>">
+
+        <label for="date_of_death">Date of Death: </label>
+        <input
+                id="date_of_death"
+                class="form-control"
+                type="date"
+                name="date_of_death"
+                value="<%= locals.author===undefined ? '' : author.date_of_death_formatted %>">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Sumbit</button>
+    <% include ./partials/errors.ejs %>
+</form>
+
+<% include ./partials/footer.ejs %>

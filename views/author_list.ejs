@@ -1,0 +1,10 @@
+<% include partials/header.ejs %>
+
+<h1><%= title %></h1>
+<ul>
+    <% author_list.forEach((author) => { %>
+        <li><a href="<%= author.url %>"><%= author.name %> | <%= author.date_of_birth_formatted %> - <%= author.date_of_death_formatted %></a></li>
+    <% }) %>
+</ul>
+
+<% include ./partials/footer.ejs %>

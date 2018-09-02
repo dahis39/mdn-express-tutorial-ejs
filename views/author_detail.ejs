@@ -1,0 +1,21 @@
+<% include partials/header.ejs %>
+
+<h1>Author: <%= author.name %></h1>
+<p><%= author.date_of_birth %> - <%= author.date_of_death %></p>
+<p>Lifespan: <%= author.lifespan %></p>
+<div style="margin-left: 20px; margin-top: 20px;">
+    <dl>
+        <% author_books.forEach((book) => { %>
+            <dt>
+                <a href="<%= book.url %>"><%= book.title %></a>
+            </dt>
+            <dd><%= book.summary %></dd>
+        <% }) %>
+    </dl>
+
+    <hr>
+    <p><a href="<%= author.url + '/delete' %>">Delete author</a></p>
+    <p><a href="<%= author.url + '/update' %>">Update author</a></p>
+</div>
+
+<% include ./partials/footer.ejs %>
