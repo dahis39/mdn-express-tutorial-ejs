@@ -159,7 +159,7 @@ exports.author_update_get = function(req, res, next) {
 };
 
 // Handle Author update on POST.
-exports.author_update_post = [
+exports.author_post = [
 
     // Validate fields.
     body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.')
@@ -187,24 +187,29 @@ exports.author_update_post = [
             return;
         }
         else {
-            // Data from form is valid.
-
-            // Create an Author object with escaped and trimmed data.
             var author = new Author(
                 {
                     first_name: req.body.first_name,
                     family_name: req.body.family_name,
                     date_of_birth: req.body.date_of_birth,
                     date_of_death: req.body.date_of_death,
-                    _id: req.params.id
                 });
 
-            // Data from form is valid.
-            Author.findByIdAndUpdate(req.params.id, author, {}, function (err,author) {
-                if (err) { return next(err); }
-                // Successful - redirect to book detail page.
-                res.redirect(author.url);
-            });
+            if (req.params.id) {
+                // UPDATE
+                author._id = req.params.id;
+                Author.findByIdAndUpdate(req.params.id, author, {}, function (err,author) {
+                    if (err) { return next(err); }
+                    res.redirect(author.url);
+                });
+            } else {
+                // SAVE
+                author.save(function (err) {
+                    if (err) { return next(err); }
+                    res.redirect(author.url);
+                });
+            }
+
         }
     }
 ];
