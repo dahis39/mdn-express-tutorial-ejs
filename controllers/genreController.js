@@ -46,37 +46,6 @@ exports.genre_create_get = function(req, res) {
     res.render('genre_form', { title: 'Create Genre' });
 };
 
-// Handle Genre create on POST.
-exports.genre_create_post =  [
-
-    // Validate that the name field is not empty.
-    body('name', 'Genre name required').isLength({ min: 1 }).trim(),
-
-    // Sanitize (trim and escape) the name field.
-    sanitizeBody('name').trim().escape(),
-
-    // Process request after validation and sanitization.
-    (req, res, next) => {
-
-        // Extract the validation errors.ejs from a request.
-        const errors = validationResult(req);
-
-        // Create a genre object with escaped and trimmed data.
-        var genre = new Genre(
-            { name: req.body.name }
-        );
-
-
-        if (!errors.isEmpty()) {
-            // There are errors.ejs. Render the form again with sanitized values/error messages.
-            res.render('genre_form', { title: 'Create Genre', genre: genre, errors: errors.array()});
-            return;
-        }
-        else {
-        }
-    }
-];
-
 // Display Genre delete form on GET.
 exports.genre_delete_get = function(req, res, next) {
 
@@ -134,7 +103,7 @@ exports.genre_update_get = function(req, res) {
     });
 };
 
-// Handle Genre update on POST.
+// Handle Genre on POST.
 exports.genre_post =  [
 
     // Validate that the name field is not empty.

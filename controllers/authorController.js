@@ -110,7 +110,7 @@ exports.author_update_get = function(req, res, next) {
     });
 };
 
-// Handle Author update on POST.
+// Handle Author on POST.
 exports.author_post = [
 
     // Validate fields.

@@ -244,7 +244,7 @@ exports.book_update_get = function(req, res, next) {
 };
 
 // Handle book update on POST.
-exports.book_update_post = [
+exports.book_post = [
 
     // Convert the genre to an array
     (req, res, next) => {
@@ -264,7 +264,15 @@ exports.book_update_post = [
     body('isbn', 'ISBN must not be empty').isLength({ min: 1 }).trim(),
 
     // Sanitize fields.
-    sanitizeBody('title').trim().escape(),
+    /*
+        Express-validator .escape() change apostrophe. When it gets displayed back
+        to page, it adds a amp; within the unicode causing the browser not encoding.
+        It will happen with all the form input running .escape(), but this is the most
+        troubled one.
+        Extended read:
+        https://github.com/express-validator/express-validator/issues/585
+     */
+    // sanitizeBody('title').trim().escape(),
     sanitizeBody('author').trim().escape(),
     sanitizeBody('summary').trim().escape(),
     sanitizeBody('isbn').trim().escape(),
@@ -282,8 +290,7 @@ exports.book_update_post = [
                 author: req.body.author,
                 summary: req.body.summary,
                 isbn: req.body.isbn,
-                genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre,
-                _id:req.params.id //This is required, or a new ID will be assigned!
+                genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre
             });
 
         if (!errors.isEmpty()) {
@@ -308,15 +315,19 @@ exports.book_update_post = [
                 }
                 res.render('book_form', { title: 'Update Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() });
             });
-            return;
-        }
-        else {
-            // Data from form is valid. Update the record.
-            Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) {
-                if (err) { return next(err); }
-                // Successful - redirect to book detail page.
-                res.redirect(thebook.url);
-            });
+        } else {
+            if (req.params.id) {
+                book._id = req.params.id;
+                Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) {
+                    if (err) { return next(err); }
+                    res.redirect(thebook.url);
+                });
+            } else {
+                book.save(function (err) {
+                    if (err) { return next(err); }
+                    res.redirect(book.url);
+                });
+            }
         }
     }
 ];
