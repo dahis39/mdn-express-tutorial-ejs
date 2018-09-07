@@ -73,27 +73,6 @@ exports.genre_create_post =  [
             return;
         }
         else {
-            // Data from form is valid.
-            // Check if Genre with same name already exists.
-            Genre.findOne({ 'name': req.body.name })
-                .exec( function(err, found_genre) {
-                    if (err) { return next(err); }
-
-                    if (found_genre) {
-                        // Genre exists, redirect to its detail page.
-                        res.redirect(found_genre.url);
-                    }
-                    else {
-
-                        genre.save(function (err) {
-                            if (err) { return next(err); }
-                            // Genre saved. Redirect to genre detail page.
-                            res.redirect(genre.url);
-                        });
-
-                    }
-
-                });
         }
     }
 ];
@@ -156,7 +135,7 @@ exports.genre_update_get = function(req, res) {
 };
 
 // Handle Genre update on POST.
-exports.genre_update_post =  [
+exports.genre_post =  [
 
     // Validate that the name field is not empty.
     body('name', 'Genre name required').isLength({ min: 1 }).trim(),
@@ -175,19 +154,38 @@ exports.genre_update_post =  [
             { name: req.body.name, _id: req.params.id }
         );
 
-
         if (!errors.isEmpty()) {
             // There are errors.ejs. Render the form again with sanitized values/error messages.
             res.render('genre_form', { title: 'Create Genre', genre: genre, errors: errors.array()});
-            return;
-        }
-        else {
-            // Data from form is valid.
-            Genre.findByIdAndUpdate(req.params.id, genre, {}, function (err,genre) {
-                if (err) { return next(err); }
-                // Successful - redirect to book detail page.
-                res.redirect(genre.url);
-            });
+        } else {
+            // Check if Genre with same name already exists.
+            Genre.findOne({ 'name': req.body.name })
+                .exec( function(err, found_genre) {
+                    if (err) { return next(err); }
+
+                    if (found_genre) {
+                        // Genre exists, redirect to its detail page.
+                        res.redirect(found_genre.url);
+                    } else {
+                        // UPDATE or CREATE
+                        if (req.params.id) {
+                            genre._id = req.params.id;
+                            // Data from form is valid.
+                            Genre.findByIdAndUpdate(req.params.id, genre, {}, function (err,genre) {
+                                if (err) { return next(err); }
+                                // Successful - redirect to book detail page.
+                                res.redirect(genre.url);
+                            });
+                        } else {
+                            genre.save(function (err) {
+                                if (err) { return next(err); }
+                                // Genre saved. Redirect to genre detail page.
+                                res.redirect(genre.url);
+                            });
+                        }
+                    }
+
+                });
         }
     }
 ];
